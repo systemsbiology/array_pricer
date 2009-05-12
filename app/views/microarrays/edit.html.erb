@@ -1,0 +1,48 @@
+<h1>Editing microarray</h1>
+
+<% form_for(@microarray) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :internal_price %><br />
+    <%= f.text_field :internal_price %>
+  </p>
+  <p>
+    <%= f.label :nonprofit_price %><br />
+    <%= f.text_field :nonprofit_price %>
+  </p>
+  <p>
+    <%= f.label :commercial_price %><br />
+    <%= f.text_field :commercial_price %>
+  </p>
+  <p>
+    <%= f.label :number_per_slide %><br />
+    <%= f.text_field :number_per_slide %>
+  </p>
+  <p>
+    <%= f.label :organism_id %><br />
+    <%= f.collection_select :organism_id, Organism.find(:all), :id, :name %>
+  </p>
+  <p>
+    <%= f.label :application_id %><br />
+    <%= f.collection_select :application_id, Application.find(:all), :id, :name %>
+  </p>
+  <p>
+    <%= f.label :platform_id %><br />
+    <%= f.collection_select :platform_id, Platform.find(:all), :id, :name %>
+  </p>
+  <p>
+    <%= f.label :catalog_number %><br />
+    <%= f.text_field :catalog_number %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @microarray %> |
+<%= link_to 'Back', microarrays_path %>

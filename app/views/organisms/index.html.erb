@@ -1,0 +1,20 @@
+<h1>Listing organisms</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @organisms.each do |organism| %>
+  <tr>
+    <td><%=h organism.name %></td>
+    <td><%= link_to 'Show', organism %></td>
+    <td><%= link_to 'Edit', edit_organism_path(organism) %></td>
+    <td><%= link_to 'Destroy', organism, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New organism', new_organism_path %>

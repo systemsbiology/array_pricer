@@ -1,0 +1,36 @@
+<h1>Listing microarrays</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Internal price</th>
+    <th>Nonprofit price</th>
+    <th>Commercial price</th>
+    <th>Number per slide</th>
+    <th>Organism</th>
+    <th>Application</th>
+    <th>Platform</th>
+    <th>Catalog number</th>
+  </tr>
+
+<% @microarrays.each do |microarray| %>
+  <tr>
+    <td><%=h microarray.name %></td>
+    <td><%=h microarray.internal_price %></td>
+    <td><%=h microarray.nonprofit_price %></td>
+    <td><%=h microarray.commercial_price %></td>
+    <td><%=h microarray.number_per_slide %></td>
+    <td><%=h microarray.organism.name %></td>
+    <td><%=h microarray.application.name %></td>
+    <td><%=h microarray.platform.name %></td>
+    <td><%=h microarray.catalog_number %></td>
+    <td><%= link_to 'Show', microarray %></td>
+    <td><%= link_to 'Edit', edit_microarray_path(microarray) %></td>
+    <td><%= link_to 'Destroy', microarray, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New microarray', new_microarray_path %>

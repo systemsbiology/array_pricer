@@ -1,0 +1,22 @@
+<h1>Listing platforms</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Vendor</th>
+  </tr>
+
+<% @platforms.each do |platform| %>
+  <tr>
+    <td><%=h platform.name %></td>
+    <td><%=h platform.vendor %></td>
+    <td><%= link_to 'Show', platform %></td>
+    <td><%= link_to 'Edit', edit_platform_path(platform) %></td>
+    <td><%= link_to 'Destroy', platform, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New platform', new_platform_path %>

@@ -1,0 +1,16 @@
+<h1>Editing organism</h1>
+
+<% form_for(@organism) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @organism %> |
+<%= link_to 'Back', organisms_path %>

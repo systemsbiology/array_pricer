@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Array Pricer Administration</title>
+  <%= stylesheet_link_tag 'scaffold' %>
+</head>
+<body>
+
+<%= link_to 'Microarrays', microarrays_path %> |
+<%= link_to 'Labeling Options', labeling_options_path %> |
+<%= link_to 'Hybridization Options', hybridization_options_path %> |
+<%= link_to 'Platforms', platforms_path %> |
+<%= link_to 'Applications', applications_path %> |
+<%= link_to 'Organisms', organisms_path %> |
+
+<p style="color: green"><%= flash[:notice] %></p>
+
+<hr>
+
+<%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<p>
+  <b>Name:</b>
+  <%=h @microarray.name %>
+</p>
+
+<p>
+  <b>Internal price:</b>
+  <%=h @microarray.internal_price %>
+</p>
+
+<p>
+  <b>Nonprofit price:</b>
+  <%=h @microarray.nonprofit_price %>
+</p>
+
+<p>
+  <b>Commercial price:</b>
+  <%=h @microarray.commercial_price %>
+</p>
+
+<p>
+  <b>Number per slide:</b>
+  <%=h @microarray.number_per_slide %>
+</p>
+
+<p>
+  <b>Organism:</b>
+  <%=h @microarray.organism.name %>
+</p>
+
+<p>
+  <b>Application:</b>
+  <%=h @microarray.application.name %>
+</p>
+<p>
+  <b>Platform:</b>
+  <%=h @microarray.platform.name %>
+</p>
+
+<p>
+  <b>Catalog number:</b>
+  <%=h @microarray.catalog_number %>
+</p>
+
+
+<%= link_to 'Edit', edit_microarray_path(@microarray) %> |
+<%= link_to 'Back', microarrays_path %>

@@ -1,0 +1,30 @@
+<h1>Listing hybridization_options</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Platform</th>
+    <th>Internal price</th>
+    <th>Nonprofit price</th>
+    <th>Commercial price</th>
+    <th>Description</th>
+  </tr>
+
+<% @hybridization_options.each do |hybridization_option| %>
+  <tr>
+    <td><%=h hybridization_option.name %></td>
+    <td><%=h hybridization_option.platform.name %></td>
+    <td><%=h hybridization_option.internal_price %></td>
+    <td><%=h hybridization_option.nonprofit_price %></td>
+    <td><%=h hybridization_option.commercial_price %></td>
+    <td><%=h hybridization_option.description %></td>
+    <td><%= link_to 'Show', hybridization_option %></td>
+    <td><%= link_to 'Edit', edit_hybridization_option_path(hybridization_option) %></td>
+    <td><%= link_to 'Destroy', hybridization_option, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New hybridization_option', new_hybridization_option_path %>

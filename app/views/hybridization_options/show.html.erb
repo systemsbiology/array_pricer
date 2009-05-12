@@ -1,0 +1,33 @@
+<p>
+  <b>Name:</b>
+  <%=h @hybridization_option.name %>
+</p>
+
+<p>
+  <b>Platform:</b>
+  <%=h @hybridization_option.platform.name %>
+</p>
+
+<p>
+  <b>Internal price:</b>
+  <%=h @hybridization_option.internal_price %>
+</p>
+
+<p>
+  <b>Nonprofit price:</b>
+  <%=h @hybridization_option.nonprofit_price %>
+</p>
+
+<p>
+  <b>Commercial price:</b>
+  <%=h @hybridization_option.commercial_price %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @hybridization_option.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_hybridization_option_path(@hybridization_option) %> |
+<%= link_to 'Back', hybridization_options_path %>

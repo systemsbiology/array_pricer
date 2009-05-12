@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  internal_price: 1.5
+  nonprofit_price: 1.5
+  commercial_price: 1.5
+  number_per_slide: 1
+  organism_id: 1
+  application_id: 1
+  catalog_number: MyString
+
+two:
+  name: MyString
+  internal_price: 1.5
+  nonprofit_price: 1.5
+  commercial_price: 1.5
+  number_per_slide: 1
+  organism_id: 1
+  application_id: 1
+  catalog_number: MyString

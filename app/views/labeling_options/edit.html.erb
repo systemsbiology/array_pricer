@@ -1,0 +1,44 @@
+<h1>Editing labeling_option</h1>
+
+<% form_for(@labeling_option) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :platform_id %><br />
+    <%= f.collection_select :platform_id, Platform.find(:all), :id, :name %>
+  </p>
+  <p>
+    <%= f.label :application_id %><br />
+    <%= f.collection_select :application_id, Application.find(:all), :id, :name %>
+  </p>
+  <p>
+    <%= f.label :internal_price %><br />
+    <%= f.text_field :internal_price %>
+  </p>
+  <p>
+    <%= f.label :nonprofit_price %><br />
+    <%= f.text_field :nonprofit_price %>
+  </p>
+  <p>
+    <%= f.label :commercial_price %><br />
+    <%= f.text_field :commercial_price %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :starting_amount %><br />
+    <%= f.text_field :starting_amount %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @labeling_option %> |
+<%= link_to 'Back', labeling_options_path %>

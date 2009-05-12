@@ -1,0 +1,20 @@
+<h1>Editing platform</h1>
+
+<% form_for(@platform) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :vendor %><br />
+    <%= f.text_field :vendor %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @platform %> |
+<%= link_to 'Back', platforms_path %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  platform_id: 1
+  internal_price: 1.5
+  nonprofit_price: 1.5
+  commercial_price: 1.5
+  description: MyString
+
+two:
+  name: MyString
+  platform_id: 1
+  internal_price: 1.5
+  nonprofit_price: 1.5
+  commercial_price: 1.5
+  description: MyString

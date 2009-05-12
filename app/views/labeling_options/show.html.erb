@@ -1,0 +1,43 @@
+<p>
+  <b>Name:</b>
+  <%=h @labeling_option.name %>
+</p>
+
+<p>
+  <b>Platform:</b>
+  <%=h @labeling_option.platform.name %>
+</p>
+
+<p>
+  <b>Application:</b>
+  <%=h @labeling_option.application.name %>
+</p>
+
+<p>
+  <b>Internal price:</b>
+  <%=h @labeling_option.internal_price %>
+</p>
+
+<p>
+  <b>Nonprofit price:</b>
+  <%=h @labeling_option.nonprofit_price %>
+</p>
+
+<p>
+  <b>Commercial price:</b>
+  <%=h @labeling_option.commercial_price %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @labeling_option.description %>
+</p>
+
+<p>
+  <b>Starting amount:</b>
+  <%=h @labeling_option.starting_amount %>
+</p>
+
+
+<%= link_to 'Edit', edit_labeling_option_path(@labeling_option) %> |
+<%= link_to 'Back', labeling_options_path %>
