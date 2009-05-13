@@ -8,7 +8,7 @@ describe HybridizationOptionsController do
   
   describe "GET index" do
     it "assigns all hybridization_options as @hybridization_options" do
-      HybridizationOption.stub!(:find).with(:all, :include => :platform).
+      HybridizationOption.stub!(:find).with(:all).
         and_return([mock_hybridization_option])
       get :index
       assigns[:hybridization_options].should == [mock_hybridization_option]

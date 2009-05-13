@@ -8,7 +8,7 @@ describe LabelingOptionsController do
   
   describe "GET index" do
     it "assigns all labeling_options as @labeling_options" do
-      LabelingOption.stub!(:find).with(:all, :include => [:platform, :application]).and_return([mock_labeling_option])
+      LabelingOption.stub!(:find).with(:all).and_return([mock_labeling_option])
       get :index
       assigns[:labeling_options].should == [mock_labeling_option]
     end
