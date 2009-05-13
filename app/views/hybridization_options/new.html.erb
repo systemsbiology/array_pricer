@@ -8,10 +8,6 @@
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :platform_id %><br />
-    <%= f.collection_select :platform_id, Platform.find(:all), :id, :name, {:prompt => true} %>
-  </p>
-  <p>
     <%= f.label :internal_price %><br />
     <%= f.text_field :internal_price %>
   </p>

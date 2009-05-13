@@ -3,8 +3,6 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Platform</th>
-    <th>Application</th>
     <th>Internal price</th>
     <th>Nonprofit price</th>
     <th>Commercial price</th>
@@ -15,8 +13,6 @@
 <% @labeling_options.each do |labeling_option| %>
   <tr>
     <td><%=h labeling_option.name %></td>
-    <td><%=h labeling_option.platform.name %></td>
-    <td><%=h labeling_option.application.name %></td>
     <td><%=h labeling_option.internal_price %></td>
     <td><%=h labeling_option.nonprofit_price %></td>
     <td><%=h labeling_option.commercial_price %></td>

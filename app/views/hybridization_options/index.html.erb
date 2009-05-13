@@ -3,7 +3,6 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Platform</th>
     <th>Internal price</th>
     <th>Nonprofit price</th>
     <th>Commercial price</th>
@@ -13,7 +12,6 @@
 <% @hybridization_options.each do |hybridization_option| %>
   <tr>
     <td><%=h hybridization_option.name %></td>
-    <td><%=h hybridization_option.platform.name %></td>
     <td><%=h hybridization_option.internal_price %></td>
     <td><%=h hybridization_option.nonprofit_price %></td>
     <td><%=h hybridization_option.commercial_price %></td>

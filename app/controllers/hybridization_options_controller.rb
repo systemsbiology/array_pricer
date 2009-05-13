@@ -6,7 +6,7 @@ class HybridizationOptionsController < ApplicationController
   # GET /hybridization_options
   # GET /hybridization_options.xml
   def index
-    @hybridization_options = HybridizationOption.find(:all, :include => :platform)
+    @hybridization_options = HybridizationOption.find(:all)
 
     respond_to do |format|
       format.html # index.html.erb

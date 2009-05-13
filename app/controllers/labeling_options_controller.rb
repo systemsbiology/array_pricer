@@ -6,7 +6,7 @@ class LabelingOptionsController < ApplicationController
   # GET /labeling_options
   # GET /labeling_options.xml
   def index
-    @labeling_options = LabelingOption.find(:all, :include => [:platform, :application])
+    @labeling_options = LabelingOption.find(:all)
 
     respond_to do |format|
       format.html # index.html.erb

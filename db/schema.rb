@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(:version => 20090512183754) do
 
   create_table "hybridization_options", :force => true do |t|
     t.string   "name"
-    t.integer  "platform_id"
     t.float    "internal_price"
     t.float    "nonprofit_price"
     t.float    "commercial_price"
@@ -29,10 +28,13 @@ ActiveRecord::Schema.define(:version => 20090512183754) do
     t.datetime "updated_at"
   end
 
+  create_table "hybridization_options_microarrays", :id => false, :force => true do |t|
+    t.integer "hybridization_option_id"
+    t.integer "microarray_id"
+  end
+
   create_table "labeling_options", :force => true do |t|
     t.string   "name"
-    t.integer  "platform_id"
-    t.integer  "application_id"
     t.float    "internal_price"
     t.float    "nonprofit_price"
     t.float    "commercial_price"
@@ -40,6 +42,11 @@ ActiveRecord::Schema.define(:version => 20090512183754) do
     t.string   "starting_amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "labeling_options_microarrays", :id => false, :force => true do |t|
+    t.integer "labeling_option_id"
+    t.integer "microarray_id"
   end
 
   create_table "microarrays", :force => true do |t|

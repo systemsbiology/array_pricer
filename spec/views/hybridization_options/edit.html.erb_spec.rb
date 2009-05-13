@@ -6,7 +6,6 @@ describe "/hybridization_options/edit.html.erb" do
     assigns[:hybridization_option] = @hybridization_option = stub_model(HybridizationOption,
       :new_record? => false,
       :name => "value for name",
-      :platform_id => 1,
       :internal_price => 1.5,
       :nonprofit_price => 1.5,
       :commercial_price => 1.5,
@@ -19,7 +18,6 @@ describe "/hybridization_options/edit.html.erb" do
     
     response.should have_tag("form[action=#{hybridization_option_path(@hybridization_option)}][method=post]") do
       with_tag('input#hybridization_option_name[name=?]', "hybridization_option[name]")
-      with_tag('select#hybridization_option_platform_id[name=?]', "hybridization_option[platform_id]")
       with_tag('input#hybridization_option_internal_price[name=?]', "hybridization_option[internal_price]")
       with_tag('input#hybridization_option_nonprofit_price[name=?]', "hybridization_option[nonprofit_price]")
       with_tag('input#hybridization_option_commercial_price[name=?]', "hybridization_option[commercial_price]")

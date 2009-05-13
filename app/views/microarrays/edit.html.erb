@@ -36,6 +36,14 @@
     <%= f.collection_select :platform_id, Platform.find(:all), :id, :name %>
   </p>
   <p>
+    <%= f.label :labeling_option_ids %><br />
+    <%= f.collection_select :labeling_option_ids, LabelingOption.find(:all), :id, :name, {}, :multiple => true %>
+  </p>
+  <p>
+    <%= f.label :hybridization_option_ids %><br />
+    <%= f.collection_select :hybridization_option_ids, HybridizationOption.find(:all), :id, :name, {}, :multiple => true %>
+  </p>
+  <p>
     <%= f.label :catalog_number %><br />
     <%= f.text_field :catalog_number %>
   </p>
