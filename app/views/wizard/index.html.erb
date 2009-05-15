@@ -143,9 +143,18 @@
               <td class="microarray" microarray_id="<%= microarray.id %>" internal_price="<%= microarray.internal_price %>"
                   nonprofit_price="<%= microarray.nonprofit_price %>" commercial_price="<%= microarray.commercial_price %>">
                 Array cost:
-                <span microarray_id="<%= microarray.id %>" class="internal_price"><%=h price_or_not_available(microarray.internal_price) %></span>
-                <span microarray_id="<%= microarray.id %>" class="nonprofit_price"><%=h price_or_not_available(microarray.nonprofit_price) %></span>
-                <span microarray_id="<%= microarray.id %>" class="commercial_price"><%=h price_or_not_available(microarray.commercial_price) %></span>
+                <span microarray_id="<%= microarray.id %>" class="internal_price">
+                  <%=h price_or_not_available(microarray.internal_price) %>
+                  <%= cost_per_slide(microarray.internal_price, microarray.number_per_slide) %>
+                </span>
+                <span microarray_id="<%= microarray.id %>" class="nonprofit_price">
+                  <%=h price_or_not_available(microarray.nonprofit_price) %>
+                  <%= cost_per_slide(microarray.nonprofit_price, microarray.number_per_slide) %>
+                </span>
+                <span microarray_id="<%= microarray.id %>" class="commercial_price">
+                  <%=h price_or_not_available(microarray.commercial_price) %>
+                  <%= cost_per_slide(microarray.commercial_price, microarray.number_per_slide) %>
+                </span>
                 <br/>
                 Ordering:
                 <% if microarray.catalog_number.length > 0 %>
@@ -153,7 +162,7 @@
                 <% end %>
                 <% if microarray.number_per_slide > 1 %>
                   <br<b>Arrays must be done in multiples of <%= microarray.number_per_slide %> since there are
-                  <%= microarray.number_per_slide %> array on each slide.</b>
+                  <%= microarray.number_per_slide %> arrays on each slide.</b>
                 <% end %>
               </td>
             <% end %>
