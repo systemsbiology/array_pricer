@@ -2,8 +2,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "/microarrays/edit.html.erb" do
 
-  
   before(:each) do
+    LabelingOption.should_receive(:find).and_return( [mock_model(LabelingOption)] )
+    HybridizationOption.should_receive(:find).and_return( [mock_model(HybridizationOption)] )
+
     assigns[:microarray] = @microarray = stub_model(Microarray,
       :new_record? => false,
       :name => "value for name",

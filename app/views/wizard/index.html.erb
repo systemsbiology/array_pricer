@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Array Pricer</title>
+  <%= stylesheet_link_tag 'style' %>
+  <%= javascript_include_tag 'jquery-1.3.2.min.js', 'application', 'jquery.columnmanager.pack.js' %>
+</head>
+<body>
+
+<div id="wizardwrapper">
+
+  <div class="1">
+
+    <h3>Step 1</h3>
+    <div id="wizardcontent">
+      <h4>Instructions</h4>
+      <p>This wizard will guide you through finding pricing for microarrays. Click 'Next' to start.</p>
+    </div>
+    <div class="buttons">
+      <button type="submit" class="previous"  disabled="disabled"> <%= image_tag("arrow_left.png") %> Back </button>
+      <button type="submit" class="next" onclick="loadnext(1,2);"> Next <%= image_tag("arrow_right.png") %> </button>
+
+    </div>
+    <ul id="mainNav" class="fiveStep">
+      <li class="current"><a title=""><em>Step 1</em><span>Instructions</span></a></li>
+      <li><a title=""><em>Step 2</em><span>Choose your pricing</span></a></li>
+      <li><a title=""><em>Step 3</em><span>Choose an organism and application</span></a></li>
+      <li><a title=""><em>Step 4</em><span>Choose microarrays</span></a></li>
+      <li class="mainNavNoBg"><a title=""><em>Step 5</em><span>See pricing options</span></a></li>
+    </ul>
+    <div style="clear:both"></div>
+  </div>
+
+  <div id="wizardpanel" class="2">
+
+    <h3>Step 2</h3>
+    <div id="wizardcontent">
+      <h4>Pricing</h4>
+      <ul class="options">
+        <li><%= radio_button_tag :pricing, "internal", false, :class => "pricing" %>Internal Pricing</li>
+        <li><%= radio_button_tag :pricing, "nonprofit", false, :class => "pricing" %>External Non-profit Pricing</li>
+        <li><%= radio_button_tag :pricing, "commercial", false, :class => "pricing" %>External Commercial Pricing</li>
+      </ul>
+    </div>
+    <div class="buttons">
+      <button type="submit" class="previous" onclick="loadnext(2,1);"> <img src="images/arrow_left.png" alt="" /> Back </button>
+      <button type="submit" class="next" onclick="loadnext(2,3);"> Next <%= image_tag("arrow_right.png") %> </button>
+
+    </div>
+    <ul id="mainNav" class="fiveStep">
+      <li class="lastDone"><a title=""><em>Step 1</em><span>Instructions</span></a></li>
+      <li class="current"><a title=""><em>Step 2</em><span>Choose your pricing</span></a></li>
+      <li><a title=""><em>Step 3</em><span>Choose your organism and application</span></a></li>
+      <li><a title=""><em>Step 4</em><span>Choose microarrays</span></a></li>
+      <li class="mainNavNoBg"><a title=""><em>Step 5</em><span>See pricing options</span></a></li>
+    </ul>
+    <div style="clear:both"></div>
+  </div>
+
+  <div id="wizardpanel" class="3">
+    <h3>Step 3</h3>
+    <div id="wizardcontent">
+      <h4>Organism</h4>
+      <ul class="options">
+        <% @organisms.each do |organism| %>
+          <li><%= radio_button_tag :organism_id, organism.id, false, :class => "organism_option" %><%=h organism.name %></li>
+        <% end %>
+      </ul>
+      <h4>Application</h4>
+      <ul class="options">
+        <% @applications.each do |application| %>
+          <li>
+            <%= radio_button_tag :application_id, application.id, false, :class => "application_option" %><%=h application.name %><br>
+            <%=h application.description %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="buttons">
+      <button type="submit" class="previous" onclick="loadnext(3,2);"> <img src="images/arrow_left.png" alt="" /> Back </button>
+      <button type="submit" class="next" onclick="loadnext(3,4);"> Next <%= image_tag("arrow_right.png") %> </button>
+    </div>
+    <ul id="mainNav" class="fiveStep">
+      <li class="done"><a title=""><em>Step 1</em><span>Instructions</span></a></li>
+      <li class="lastDone"><a title=""><em>Step 2</em><span>Choose your pricing</span></a></li>
+      <li class="current"><a title=""><em>Step 3</em><span>Choose your organism and application</span></a></li>
+      <li><a title=""><em>Step 4</em><span>Choose microarrays</span></a></li>
+      <li class="mainNavNoBg"><a title=""><em>Step 5</em><span>See pricing options</span></a></li>
+    </ul>
+  </div>
+
+
+  <div id="wizardpanel" class="4">
+    <h3>Step 4</h3>
+    <div id="wizardcontent">
+      <h4>Microarrays</h4>
+      <% @microarray_choices.each do |organism_id, applications| %>
+        <% applications.each do |application_id, microarrays| %>
+          <ul id="organism-<%= organism_id %>_application-<%= application_id %>" class="options microarrays" style="display:none">
+            <% microarrays.each do |microarray| %>
+              <li>
+                <%= check_box_tag :microarray_id, microarray.id, false, :class => "microarray_option" %>
+                <%=h microarray.platform.vendor %> <%=h microarray.name %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="buttons">
+      <button type="submit" class="previous" onclick="loadnext(4,3);"> <img src="images/arrow_left.png" alt="" /> Back </button>
+
+      <button type="submit" class="next"  onclick="loadnext(4,5);"> Next <img src="images/arrow_right.png" alt=""/> </button>
+    </div>
+    <ul id="mainNav" class="fiveStep">
+      <li class="done"><a title=""><em>Step 1</em><span>Instructions</span></a></li>
+      <li class="done"><a title=""><em>Step 2</em><span>Choose your pricing</span></a></li>
+      <li class="lastDone"><a title=""><em>Step 3</em><span>Choose your organism and application</span></a></li>
+      <li class="current"><a title=""><em>Step 4</em><span>Choose microarrays</span></a></li>
+      <li class="mainNavNoBg"><a title=""><em>Step 5</em><span>See pricing options</span></a></li>
+    </ul>
+  </div>
+
+
+  <div id="wizardpanel" class="5" >
+    <h3>Step 5</h3>
+    <div id="wizardcontent">
+      <table id="microarray_table">
+        <thead>
+          <tr>
+            <% @microarrays.each do |microarray| %>
+              <th id="microarray-<%= microarray.id %>"><%=h microarray.platform.vendor %> <%=h microarray.name %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% @microarrays.each do |microarray| %>
+              <td class="microarray" microarray_id="<%= microarray.id %>" internal_price="<%= microarray.internal_price %>"
+                  nonprofit_price="<%= microarray.nonprofit_price %>" commercial_price="<%= microarray.commercial_price %>">
+                Array cost:
+                <span microarray_id="<%= microarray.id %>" class="internal_price"><%=h price_or_not_available(microarray.internal_price) %></span>
+                <span microarray_id="<%= microarray.id %>" class="nonprofit_price"><%=h price_or_not_available(microarray.nonprofit_price) %></span>
+                <span microarray_id="<%= microarray.id %>" class="commercial_price"><%=h price_or_not_available(microarray.commercial_price) %></span>
+                <br/>
+                Ordering:
+                <% if microarray.catalog_number.length > 0 %>
+                  <%= microarray.platform.vendor %> Catalog #<%= microarray.catalog_number %>
+                <% end %>
+                <% if microarray.number_per_slide > 1 %>
+                  <br<b>Arrays must be done in multiples of <%= microarray.number_per_slide %> since there are
+                  <%= microarray.number_per_slide %> array on each slide.</b>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+          <tr>
+            <% @microarrays.each do |microarray| %>
+              <td microarray_id="<%= microarray.id %>">
+                <b>Labeling Options</b><br/>
+                <% microarray.labeling_options.each do |labeling_option| %>
+                  <%= radio_button_tag "microarray-#{microarray.id}_labeling_option", labeling_option.id, false, :class => "labeling_option",
+                      :microarray_id => microarray.id, :internal_price => labeling_option.internal_price,
+                      :nonprofit_price => labeling_option.nonprofit_price, :commercial_price => labeling_option.commercial_price %>
+                  <%=h labeling_option.name %>:
+                  <span microarray_id="<%= microarray.id %>" class="internal_price"><%=h number_to_currency(labeling_option.internal_price) %></span>
+                  <span microarray_id="<%= microarray.id %>" class="nonprofit_price"><%=h number_to_currency(labeling_option.nonprofit_price) %></span>
+                  <span microarray_id="<%= microarray.id %>" class="commercial_price"><%=h number_to_currency(labeling_option.commercial_price) %></span><br/>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+          <tr>
+            <% @microarrays.each do |microarray| %>
+              <td microarray_id="<%= microarray.id %>">
+                <b>Hybridization Options</b><br/>
+                <% microarray.hybridization_options.each do |hybridization_option| %>
+                  <%= radio_button_tag "microarray-#{microarray.id}_hybridization_option", hybridization_option.id, false, :class => "hybridization_option",
+                      :microarray_id => microarray.id, :internal_price => hybridization_option.internal_price,
+                      :nonprofit_price => hybridization_option.nonprofit_price, :commercial_price => hybridization_option.commercial_price %>
+                  <%=h hybridization_option.name %>:
+                  <span microarray_id="<%= microarray.id %>" class="internal_price"><%=h number_to_currency(hybridization_option.internal_price) %></span>
+                  <span microarray_id="<%= microarray.id %>" class="nonprofit_price"><%=h number_to_currency(hybridization_option.nonprofit_price) %></span>
+                  <span microarray_id="<%= microarray.id %>" class="commercial_price"><%=h number_to_currency(hybridization_option.commercial_price) %></span><br/>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+          <tr>
+            <% @microarrays.each do |microarray| %>
+              <td microarray_id="<%= microarray.id %>">
+                 <b>Total: <span class="total" microarray_id="<%= microarray.id %>"></span></b>
+              </td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="buttons">
+      <button type="submit" class="previous" onclick="loadnext(5,4);"> <img src="images/arrow_left.png" alt="" /> Back </button>
+      <button type="submit" class="next" disabled="disabled"> Next <%= image_tag("arrow_right.png") %> </button>
+
+    </div>
+    <ul id="mainNav" class="fiveStep">
+      <li class="done"><a title=""><em>Step 1</em><span>Instructions</span></a></li>
+      <li class="done"><a title=""><em>Step 2</em><span>Choose your pricing</span></a></li>
+      <li class="done"><a title=""><em>Step 3</em><span>Choose your organism and application</span></a></li>
+      <li class="lastDone"><a title=""><em>Step 4</em><span>Choose microarrays</span></a></li>
+      <li class="mainNavNoBg current"><a title=""><em>Step 5</em><span>See pricing options</span></a></li>
+    </ul>
+  </div>
+
+</div>
+
+
+</body>
+</html>
