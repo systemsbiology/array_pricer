@@ -19,7 +19,7 @@ html, body {
 
 body {
 	background-color: #fff;
-	margin:30px;
+	margin:10px;
 }
 
 body {font:13px arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}
@@ -179,7 +179,7 @@ display:block;
 	background-color: #F5F5F5; margin:5px;display:none;
 }
 #wizardcontent {
-	height:350px;
+	height:430px;
     margin:20px;
 }
 
