@@ -81,7 +81,7 @@ h1 a{
 	width:360px;
 	height:46px;
 	text-indent:-999em;
-	background-image: url(/images/logoPlaceHolder.gif);
+	background-image: url(../images/logoPlaceHolder.gif);
 	background-repeat: no-repeat;
 	display:block;
 }
@@ -99,24 +99,24 @@ h6{}
 	list-style:none;
 	float:left;
 	background-color:#EBEBEB;
-	background-image: url(/images/navBtn.gif);
+	background-image: url(../images/navBtn.gif);
 	background-repeat: no-repeat;
 	background-position: right top;
 }
 
 #mainNav li.current{
 	background-color:#C36615;
-	background-image: url(/images/navCurrentBtn.gif);
+	background-image: url(../images/navCurrentBtn.gif);
 }
 
 #mainNav li.lastDone{
 	background-color:#7C8437;
-	background-image: url(/images/navLastDoneBtn.gif);
+	background-image: url(../images/navLastDoneBtn.gif);
 }
 
 #mainNav li.done{
 	background-color:#7C8437;
-	background-image: url(/images/navDoneBtn.gif);
+	background-image: url(../images/navDoneBtn.gif);
 }
 
 #mainNav li a, #mainNav li a:link, #mainNav li a:visited, #mainNav li a:hover, #mainNav li a:active {
