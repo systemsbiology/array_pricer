@@ -13,7 +13,15 @@ $(document).ready(function(){
   show_microarray_choices();
   show_selected_pricing();
   show_totals_for_options();
-  
+
+  // tooltips
+  $('span[title]').css({borderBottom: '1px solid #900'}).cluetip({
+    splitTitle: '|',
+    arrows: false,
+    dropShadow: false,
+    cluetipClass: 'jtip'}
+  );
+
   $(".organism_option").click(function(event){
     show_microarray_choices();
     reset_microarray_table();
@@ -71,6 +79,9 @@ $(document).ready(function(){
 
       $("." + pricing + "_price").show();
     }
+
+    // refresh pricing in case options here were previously selected
+    show_totals_for_options();
   }
 
   function reset_microarray_table(){
@@ -89,6 +100,8 @@ $(document).ready(function(){
 
         if(isNaN(total) == false){
           $("span.total[microarray_id="+microarray_id+"]").html("$"+total);
+        } else {
+          $("span.total[microarray_id="+microarray_id+"]").html("");  
         }
       }
     });

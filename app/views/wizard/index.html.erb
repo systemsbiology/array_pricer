@@ -5,8 +5,8 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Array Pricer</title>
-  <%= stylesheet_link_tag 'style' %>
-  <%= javascript_include_tag 'jquery-1.3.2.min.js', 'application', 'jquery.columnmanager.pack.js' %>
+  <%= stylesheet_link_tag 'style', 'jquery.cluetip.css' %>
+  <%= javascript_include_tag 'jquery-1.3.2.min.js', 'application', 'jquery.columnmanager.pack.js', 'jquery.cluetip.js' %>
 </head>
 <body>
 
@@ -133,7 +133,14 @@
         <thead>
           <tr>
             <% @microarrays.each do |microarray| %>
-              <th id="microarray-<%= microarray.id %>"><%=h microarray.platform.vendor %> <%=h microarray.name %></th>
+              <th id="microarray-<%= microarray.id %>">
+                <%=h microarray.platform.vendor %> <%=h microarray.name %>
+                <% if microarray.number_per_slide > 1 %><br/>
+                  <span style="color:#cc0033">Prices are per array. Arrays must be done in multiples of
+                  <%= microarray.number_per_slide %> since there are <%= microarray.number_per_slide %> arrays per each
+                  slide.</span>
+                <% end %>
+              </th>
             <% end %>
           </tr>
         </thead>
@@ -160,10 +167,6 @@
                 <% if microarray.catalog_number.length > 0 %>
                   <%= microarray.platform.vendor %> Catalog #<%= microarray.catalog_number %>
                 <% end %>
-                <% if microarray.number_per_slide > 1 %>
-                  <br<b>Arrays must be done in multiples of <%= microarray.number_per_slide %> since there are
-                  <%= microarray.number_per_slide %> arrays on each slide.</b>
-                <% end %>
               </td>
             <% end %>
           </tr>
@@ -176,9 +179,16 @@
                       :microarray_id => microarray.id, :internal_price => labeling_option.internal_price,
                       :nonprofit_price => labeling_option.nonprofit_price, :commercial_price => labeling_option.commercial_price %>
                   <%=h labeling_option.name %>:
+                  
                   <span microarray_id="<%= microarray.id %>" class="internal_price"><%=h number_to_currency(labeling_option.internal_price) %></span>
                   <span microarray_id="<%= microarray.id %>" class="nonprofit_price"><%=h number_to_currency(labeling_option.nonprofit_price) %></span>
-                  <span microarray_id="<%= microarray.id %>" class="commercial_price"><%=h number_to_currency(labeling_option.commercial_price) %></span><br/>
+                  <span microarray_id="<%= microarray.id %>" class="commercial_price"><%=h number_to_currency(labeling_option.commercial_price) %></span>
+
+                  <% if labeling_option.ordering_information != nil && labeling_option.ordering_information.size > 1 %>
+                    (<span title="Ordering Information|<%=h labeling_option.ordering_information %>">Ordering</span>)
+                  <% end %>
+
+                  <br/>
                 <% end %>
               </td>
             <% end %>
