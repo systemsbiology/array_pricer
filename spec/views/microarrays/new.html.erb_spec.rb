@@ -16,7 +16,9 @@ describe "/microarrays/new.html.erb" do
       :organism_id => 1,
       :application_id => 1,
       :platform_id => 1,
-      :catalog_number => "value for catalog_number"
+      :catalog_number => "value for catalog_number",
+      :labeling_option_ids => [1,2],
+      :hybridization_option_ids => [3,4]       
     )
   end
 
@@ -33,6 +35,8 @@ describe "/microarrays/new.html.erb" do
       with_tag('select#microarray_application_id[name=?]', "microarray[application_id]")
       with_tag('select#microarray_platform_id[name=?]', "microarray[platform_id]")
       with_tag("input#microarray_catalog_number[name=?]", "microarray[catalog_number]")
+      with_tag('select#microarray_labeling_option_ids[name=?]', "microarray[labeling_option_ids][]")
+      with_tag('select#microarray_hybridization_option_ids[name=?]', "microarray[hybridization_option_ids][]")
     end
   end
 end
