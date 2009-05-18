@@ -14,4 +14,9 @@ describe HybridizationOption do
   it "should create a new instance given valid attributes" do
     HybridizationOption.create!(@valid_attributes)
   end
+
+  it "should provide a combined name and description" do
+    hybridization_option = HybridizationOption.new(@valid_attributes)
+    hybridization_option.name_and_description.should == "value for name (value for description)"
+  end
 end

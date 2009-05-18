@@ -11,7 +11,8 @@ describe "/labeling_options/index.html.erb" do
         :nonprofit_price => 1.5,
         :commercial_price => 1.5,
         :description => "value for description",
-        :starting_amount => "value for starting_amount"
+        :starting_amount => "value for starting_amount",
+        :ordering_information => "catalog #123"
       ),
       stub_model(LabelingOption,
         :name => "value for name",
@@ -19,7 +20,8 @@ describe "/labeling_options/index.html.erb" do
         :nonprofit_price => 1.5,
         :commercial_price => 1.5,
         :description => "value for description",
-        :starting_amount => "value for starting_amount"
+        :starting_amount => "value for starting_amount",
+        :ordering_information => "catalog #123"
       )
     ]
   end
@@ -32,6 +34,7 @@ describe "/labeling_options/index.html.erb" do
     response.should have_tag("tr>td", 1.5.to_s, 2)
     response.should have_tag("tr>td", "value for description".to_s, 2)
     response.should have_tag("tr>td", "value for starting_amount".to_s, 2)
+    response.should have_tag("tr>td", "catalog #123".to_s, 2)
   end
 end
 

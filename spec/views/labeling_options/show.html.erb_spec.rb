@@ -9,7 +9,8 @@ describe "/labeling_options/show.html.erb" do
       :nonprofit_price => 1.5,
       :commercial_price => 1.5,
       :description => "value for description",
-      :starting_amount => "value for starting_amount"
+      :starting_amount => "value for starting_amount",
+      :ordering_information => "value for ordering information"
     )
   end
 
@@ -21,6 +22,7 @@ describe "/labeling_options/show.html.erb" do
     response.should have_text(/1\.5/)
     response.should have_text(/value\ for\ description/)
     response.should have_text(/value\ for\ starting_amount/)
+    response.should have_text(/value\ for\ ordering\ information/)
   end
 end
 

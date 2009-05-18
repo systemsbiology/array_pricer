@@ -15,4 +15,9 @@ describe LabelingOption do
   it "should create a new instance given valid attributes" do
     LabelingOption.create!(@valid_attributes)
   end
+
+  it "should provide a combined name and description" do
+    labeling_option = LabelingOption.new(@valid_attributes)
+    labeling_option.name_and_description.should == "value for name (value for description)"
+  end
 end
