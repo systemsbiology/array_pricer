@@ -1,7 +1,7 @@
 module WizardHelper
   def price_or_not_available(price)
     if(price.nil?)
-      "Not available"
+      "Check with vendor"
     else
       number_to_currency(price)
     end
