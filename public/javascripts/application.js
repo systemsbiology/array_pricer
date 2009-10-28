@@ -36,6 +36,10 @@ $(document).ready(function(){
     show_selected_pricing();
   });
 
+  $(".microarray_option").click(function(event){
+    show_totals_for_options();
+  });
+
   $(".labeling_option").click(function(event){
     show_totals_for_options();
   });
@@ -94,7 +98,8 @@ $(document).ready(function(){
       if($('.pricing:checked').length > 0){
         var pricing_name = $('.pricing:checked')[0].value + "_price";
         var microarray_id = this.attributes['microarray_id'].value
-        var total = parseFloat($("td.microarray[microarray_id="+microarray_id+"]").attr(pricing_name));
+        var total = 0.0;
+        total += parseFloat($("td[microarray_id="+microarray_id+"] > .microarray_option:checked").attr(pricing_name));
         total += parseFloat($("td[microarray_id="+microarray_id+"] > .labeling_option:checked").attr(pricing_name));
         total += parseFloat($("td[microarray_id="+microarray_id+"] > .hybridization_option:checked").attr(pricing_name));
 

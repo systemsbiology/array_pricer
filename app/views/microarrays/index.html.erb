@@ -3,9 +3,12 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Internal price</th>
-    <th>Nonprofit price</th>
-    <th>Commercial price</th>
+    <th>Facility Internal price</th>
+    <th>Facility Nonprofit price</th>
+    <th>Facility Commercial price</th>
+    <th>User Internal price</th>
+    <th>User Nonprofit price</th>
+    <th>User Commercial price</th>
     <th>Number per slide</th>
     <th>Organism</th>
     <th>Application</th>
@@ -16,9 +19,12 @@
 <% @microarrays.each do |microarray| %>
   <tr>
     <td><%=h microarray.name %></td>
-    <td><%=h microarray.internal_price %></td>
-    <td><%=h microarray.nonprofit_price %></td>
-    <td><%=h microarray.commercial_price %></td>
+    <td><%=h microarray.facility_internal_price %></td>
+    <td><%=h microarray.facility_nonprofit_price %></td>
+    <td><%=h microarray.facility_commercial_price %></td>
+    <td><%=h microarray.user_internal_price %></td>
+    <td><%=h microarray.user_nonprofit_price %></td>
+    <td><%=h microarray.user_commercial_price %></td>
     <td><%=h microarray.number_per_slide %></td>
     <td><%=h microarray.organism.name %></td>
     <td><%=h microarray.application.name %></td>

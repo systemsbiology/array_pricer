@@ -147,26 +147,48 @@
         <tbody>
           <tr>
             <% @microarrays.each do |microarray| %>
-              <td class="microarray" microarray_id="<%= microarray.id %>" internal_price="<%= microarray.internal_price %>"
-                  nonprofit_price="<%= microarray.nonprofit_price %>" commercial_price="<%= microarray.commercial_price %>">
-                Array cost:
-                <span microarray_id="<%= microarray.id %>" class="internal_price">
-                  <%=h price_or_not_available(microarray.internal_price) %>
-                  <%= cost_per_slide(microarray.internal_price, microarray.number_per_slide) %>
-                </span>
-                <span microarray_id="<%= microarray.id %>" class="nonprofit_price">
-                  <%=h price_or_not_available(microarray.nonprofit_price) %>
-                  <%= cost_per_slide(microarray.nonprofit_price, microarray.number_per_slide) %>
-                </span>
-                <span microarray_id="<%= microarray.id %>" class="commercial_price">
-                  <%=h price_or_not_available(microarray.commercial_price) %>
-                  <%= cost_per_slide(microarray.commercial_price, microarray.number_per_slide) %>
-                </span>
-                <br/>
-                Ordering:
-                <% if microarray.catalog_number.length > 0 %>
-                  <%= microarray.platform.vendor %> Catalog #<%= microarray.catalog_number %>
-                <% end %>
+              <td microarray_id="<%= microarray.id %>">
+                <div class="option">
+                  <b>Array Options</b><br/>
+                  <%= radio_button_tag "microarray-#{microarray.id}_array", 1, false, :class => "microarray_option",
+                      :microarray_id => microarray.id, :internal_price => microarray.user_internal_price,
+                      :nonprofit_price => microarray.user_nonprofit_price, :commercial_price => microarray.user_commercial_price %>
+                  Order yourself (preferred):
+                  <span microarray_id="<%= microarray.id %>" class="internal_price">
+                    <%=h price_or_not_available(microarray.user_internal_price, true) %>
+                    <%= cost_per_slide(microarray.user_internal_price, microarray.number_per_slide) %>
+                  </span>
+                  <span microarray_id="<%= microarray.id %>" class="nonprofit_price">
+                    <%=h price_or_not_available(microarray.user_nonprofit_price, true) %>
+                    <%= cost_per_slide(microarray.user_nonprofit_price, microarray.number_per_slide) %>
+                  </span>
+                  <span microarray_id="<%= microarray.id %>" class="commercial_price">
+                    <%=h price_or_not_available(microarray.user_commercial_price, true) %>
+                    <%= cost_per_slide(microarray.user_commercial_price, microarray.number_per_slide) %>
+                  </span>
+                  <% if microarray.catalog_number != nil && microarray.catalog_number.size > 1 %>
+                    (<span title="Ordering Information|Catalog Number(s): <%=h microarray.catalog_number %>">Ordering</span>)
+                  <% end %>
+                </div>
+
+                <div class="option">
+                  <%= radio_button_tag "microarray-#{microarray.id}_array", 2, false, :class => "microarray_option", 
+                      :microarray_id => microarray.id, :internal_price => microarray.facility_internal_price,
+                      :nonprofit_price => microarray.facility_nonprofit_price, :commercial_price => microarray.facility_commercial_price %>
+                  Purchase through facility:
+                  <span microarray_id="<%= microarray.id %>" class="internal_price">
+                    <%=h price_or_not_available(microarray.facility_internal_price) %>
+                    <%= cost_per_slide(microarray.facility_internal_price, microarray.number_per_slide) %>
+                  </span>
+                  <span microarray_id="<%= microarray.id %>" class="nonprofit_price">
+                    <%=h price_or_not_available(microarray.facility_nonprofit_price) %>
+                    <%= cost_per_slide(microarray.facility_nonprofit_price, microarray.number_per_slide) %>
+                  </span>
+                  <span microarray_id="<%= microarray.id %>" class="commercial_price">
+                    <%=h price_or_not_available(microarray.facility_commercial_price) %>
+                    <%= cost_per_slide(microarray.facility_commercial_price, microarray.number_per_slide) %>
+                  </span>
+                </div>
               </td>
             <% end %>
           </tr>
@@ -175,20 +197,24 @@
               <td microarray_id="<%= microarray.id %>">
                 <b>Labeling Options</b><br/>
                 <% microarray.labeling_options.each do |labeling_option| %>
-                  <%= radio_button_tag "microarray-#{microarray.id}_labeling_option", labeling_option.id, false, :class => "labeling_option",
-                      :microarray_id => microarray.id, :internal_price => labeling_option.internal_price,
-                      :nonprofit_price => labeling_option.nonprofit_price, :commercial_price => labeling_option.commercial_price %>
-                  <%=h labeling_option.name %>:
-                  
-                  <span microarray_id="<%= microarray.id %>" class="internal_price"><%=h number_to_currency(labeling_option.internal_price) %></span>
-                  <span microarray_id="<%= microarray.id %>" class="nonprofit_price"><%=h number_to_currency(labeling_option.nonprofit_price) %></span>
-                  <span microarray_id="<%= microarray.id %>" class="commercial_price"><%=h number_to_currency(labeling_option.commercial_price) %></span>
+                  <div class="option">
+                    <%= radio_button_tag "microarray-#{microarray.id}_labeling_option", labeling_option.id, false, :class => "labeling_option",
+                        :microarray_id => microarray.id, :internal_price => labeling_option.internal_price,
+                        :nonprofit_price => labeling_option.nonprofit_price, :commercial_price => labeling_option.commercial_price %>
+                    <%=h labeling_option.name %>:
+                    
+                    <span microarray_id="<%= microarray.id %>" class="internal_price"><%=h number_to_currency(labeling_option.internal_price) %></span>
+                    <span microarray_id="<%= microarray.id %>" class="nonprofit_price"><%=h number_to_currency(labeling_option.nonprofit_price) %></span>
+                    <span microarray_id="<%= microarray.id %>" class="commercial_price"><%=h number_to_currency(labeling_option.commercial_price) %></span>
 
-                  <% if labeling_option.ordering_information != nil && labeling_option.ordering_information.size > 1 %>
-                    (<span title="Ordering Information|<%=h labeling_option.ordering_information %>">Ordering</span>)
-                  <% end %>
+                    <% if labeling_option.ordering_information != nil && labeling_option.ordering_information.size > 1 %>
+                      (<span title="Ordering Information|<%=h labeling_option.ordering_information %>">Ordering</span>)
+                    <% end %>
 
-                  <br/>
+                    <% if labeling_option.starting_amount != nil && labeling_option.starting_amount.size > 1 %>
+                      (<span title="Starting Amount|<%=h labeling_option.starting_amount %>">Requirements</span>)
+                    <% end %>
+                  </div>
                 <% end %>
               </td>
             <% end %>
@@ -198,13 +224,15 @@
               <td microarray_id="<%= microarray.id %>">
                 <b>Hybridization Options</b><br/>
                 <% microarray.hybridization_options.each do |hybridization_option| %>
-                  <%= radio_button_tag "microarray-#{microarray.id}_hybridization_option", hybridization_option.id, false, :class => "hybridization_option",
-                      :microarray_id => microarray.id, :internal_price => hybridization_option.internal_price,
-                      :nonprofit_price => hybridization_option.nonprofit_price, :commercial_price => hybridization_option.commercial_price %>
-                  <%=h hybridization_option.name %>:
-                  <span microarray_id="<%= microarray.id %>" class="internal_price"><%=h number_to_currency(hybridization_option.internal_price) %></span>
-                  <span microarray_id="<%= microarray.id %>" class="nonprofit_price"><%=h number_to_currency(hybridization_option.nonprofit_price) %></span>
-                  <span microarray_id="<%= microarray.id %>" class="commercial_price"><%=h number_to_currency(hybridization_option.commercial_price) %></span><br/>
+                  <div class="option">
+                    <%= radio_button_tag "microarray-#{microarray.id}_hybridization_option", hybridization_option.id, false, :class => "hybridization_option",
+                        :microarray_id => microarray.id, :internal_price => hybridization_option.internal_price,
+                        :nonprofit_price => hybridization_option.nonprofit_price, :commercial_price => hybridization_option.commercial_price %>
+                    <%=h hybridization_option.name %>:
+                    <span microarray_id="<%= microarray.id %>" class="internal_price"><%=h number_to_currency(hybridization_option.internal_price) %></span>
+                    <span microarray_id="<%= microarray.id %>" class="nonprofit_price"><%=h number_to_currency(hybridization_option.nonprofit_price) %></span>
+                    <span microarray_id="<%= microarray.id %>" class="commercial_price"><%=h number_to_currency(hybridization_option.commercial_price) %></span><br/>
+                  </div>
                 <% end %>
               </td>
             <% end %>

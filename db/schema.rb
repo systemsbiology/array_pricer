@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090518174913) do
+ActiveRecord::Schema.define(:version => 20091027190630) do
 
   create_table "applications", :force => true do |t|
     t.string   "name"
@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(:version => 20090518174913) do
 
   create_table "microarrays", :force => true do |t|
     t.string   "name"
-    t.float    "internal_price"
-    t.float    "nonprofit_price"
-    t.float    "commercial_price"
+    t.float    "facility_internal_price"
+    t.float    "facility_nonprofit_price"
+    t.float    "facility_commercial_price"
     t.integer  "number_per_slide"
     t.integer  "organism_id"
     t.integer  "application_id"
@@ -62,6 +62,9 @@ ActiveRecord::Schema.define(:version => 20090518174913) do
     t.string   "catalog_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "user_internal_price"
+    t.float    "user_nonprofit_price"
+    t.float    "user_commercial_price"
   end
 
   create_table "organisms", :force => true do |t|

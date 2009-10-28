@@ -179,18 +179,19 @@ display:block;
 	background-color: #F5F5F5; margin:5px;display:none;
 }
 #wizardcontent {
-	height:430px;
     margin:20px;
 }
 
 #wizardwrapper{width:920px;}
 
-
+.option{
+  margin-bottom:5px;
+}
 
 /* BUTTONS */
 .buttons{margin:10px;clear:both}
-.next {float:right}
-.previous {float:left}
+.next {float:right;margin-bottom: 10px}
+.previous {float:left;margin-bottom: 10px}
 
 .internal_price,.nonprofit_price,.commercial_price{display:none}
 
