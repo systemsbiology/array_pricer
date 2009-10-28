@@ -99,9 +99,9 @@ $(document).ready(function(){
         var pricing_name = $('.pricing:checked')[0].value + "_price";
         var microarray_id = this.attributes['microarray_id'].value
         var total = 0.0;
-        total += parseFloat($("td[microarray_id="+microarray_id+"] > .microarray_option:checked").attr(pricing_name));
-        total += parseFloat($("td[microarray_id="+microarray_id+"] > .labeling_option:checked").attr(pricing_name));
-        total += parseFloat($("td[microarray_id="+microarray_id+"] > .hybridization_option:checked").attr(pricing_name));
+        total += parseFloat($("td[microarray_id="+microarray_id+"] > div.option > .microarray_option:checked").attr(pricing_name));
+        total += parseFloat($("td[microarray_id="+microarray_id+"] > div.option > .labeling_option:checked").attr(pricing_name));
+        total += parseFloat($("td[microarray_id="+microarray_id+"] > div.option > .hybridization_option:checked").attr(pricing_name));
 
         if(isNaN(total) == false){
           $("span.total[microarray_id="+microarray_id+"]").html("$"+total);
