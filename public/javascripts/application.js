@@ -7,54 +7,6 @@ function loadnext(divout,divin){
 
 $(document).ready(function(){
 
-  // hide all microarray table columns initially
-  reset_microarray_table();
-  // show any leftover choices from a browser refresh
-  show_microarray_choices();
-  show_selected_pricing();
-  show_totals_for_options();
-
-  // tooltips
-  $('span[title]').css({borderBottom: '1px solid #900'}).cluetip({
-    splitTitle: '|',
-    arrows: false,
-    dropShadow: false,
-    cluetipClass: 'jtip'}
-  );
-
-  $(".organism_option").click(function(event){
-    show_microarray_choices();
-    reset_microarray_table();
-  });
-
-  $(".application_option").click(function(event){
-    show_microarray_choices();
-    reset_microarray_table();
-  });
-
-  $(".pricing").click(function(event){
-    show_selected_pricing();
-  });
-
-  $(".microarray_option").click(function(event){
-    show_totals_for_options();
-  });
-
-  $(".labeling_option").click(function(event){
-    show_totals_for_options();
-  });
-
-  $(".hybridization_option").click(function(event){
-    show_totals_for_options();
-  });
-
-  $("input:checkbox").click(function(event){
-    var microarray_id = this.value;
-    var table_heading = $("th#microarray-"+microarray_id)
-    var col = table_heading.parent().children().index(table_heading) + 1;
-    $("#microarray_table").toggleColumns(col);
-  });
-
   function show_microarray_choices(){
     // only show choices if both organism and application have been chosen
     if($('.organism_option:checked').length > 0 && $('.application_option:checked').length > 0){
@@ -113,5 +65,41 @@ $(document).ready(function(){
       }
     });
   }
+
+  // hide all microarray table columns initially
+  reset_microarray_table();
+
+  // show any leftover choices from a browser refresh
+  show_microarray_choices();
+  show_selected_pricing();
+  show_totals_for_options();
+
+  // tooltips
+  $('span[title]').css({borderBottom: '1px solid #900'}).cluetip({
+    splitTitle: '|',
+    arrows: false,
+    dropShadow: false,
+    cluetipClass: 'jtip'}
+  );
+
+  $(".organism_option,.application_option").click(function(event){
+    show_microarray_choices();
+    reset_microarray_table();
+  });
+
+  $(".pricing").click(function(event){
+    show_selected_pricing();
+  });
+
+  $(".microarray_option,.labeling_option,.hybridization_option").click(function(event){
+    show_totals_for_options();
+  });
+
+  $("input:checkbox").click(function(event){
+    var microarray_id = this.value;
+    var table_heading = $("th#microarray-"+microarray_id);
+    var col = table_heading.parent().children().index(table_heading) + 1;
+    $("#microarray_table").toggleColumns(col);
+  });
 
 });
