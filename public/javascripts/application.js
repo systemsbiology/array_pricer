@@ -90,20 +90,22 @@ $(document).ready(function(){
 
   function reset_microarray_table(){
     var columns = $("#microarray_table th").size();
-    for(var i=1;i<=columns;i++){$("#microarray_table").hideColumns(i);};
+    for(var i=1;i<=columns;i++){
+      $("#microarray_table").hideColumns(i);
+    }
   }
 
   function show_totals_for_options(){
     $(".total").each(function(){
       if($('.pricing:checked').length > 0){
         var pricing_name = $('.pricing:checked')[0].value + "_price";
-        var microarray_id = this.attributes['microarray_id'].value
+        var microarray_id = this.attributes.microarray_id.value;
         var total = 0.0;
         total += parseFloat($("td[microarray_id="+microarray_id+"] > div.option > .microarray_option:checked").attr(pricing_name));
         total += parseFloat($("td[microarray_id="+microarray_id+"] > div.option > .labeling_option:checked").attr(pricing_name));
         total += parseFloat($("td[microarray_id="+microarray_id+"] > div.option > .hybridization_option:checked").attr(pricing_name));
 
-        if(isNaN(total) == false){
+        if( !isNaN(total) ){
           $("span.total[microarray_id="+microarray_id+"]").html("$"+total);
         } else {
           $("span.total[microarray_id="+microarray_id+"]").html("");  
