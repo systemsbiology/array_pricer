@@ -1,0 +1,10 @@
+body {
+  font-family: "Trebuchet MS", Verdana, serif;
+  text-align: center;
+}
+
+div#content {
+  width: 500px;
+  height: 300px;
+  margin: 50px auto;
+}
