@@ -16,6 +16,13 @@ may find the following sufficient to get it up and running (with slimcore):
     git clone git://github.com/systemsbiology/array_pricer.git
     cd array_pricer
     bundle install
+
+    cp config/application.yml.example config/application.yml
+    cp config/database.yml.example config/database.yml
+
+Edit config/application.yml and config/database.yml to set your application and database
+configuration settings. Then run:
+
     bin/rake db:migrate
     script/server
 
